@@ -171,7 +171,7 @@ public class ReadContextUtil {
             fis.close();
         } catch (java.io.IOException e) {
             System.err.println("IOException=" + e);
-            System.exit(1);
+//            System.exit(1);
         } finally {
             if (pdfDocument != null) {
                 org.apache.pdfbox.cos.COSDocument cos = pdfDocument.getDocument();

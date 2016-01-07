@@ -23,7 +23,7 @@
         </table>
     </form>
 	
-	<form  action="SearchResultServlet" method="get">
+	<form  action="SearchResultServlet" method="post">
         <table border="0">
            <tr><td>查询关键字：</td><td><input type="text" name="keyword" size="20"></td><td>每页条目：</td><td><input type="text" name="item_num" size="5" value="5"></td></tr>
            <tr align="center"><td colspan="4"><input type="submit" value="查询"></td></tr>

@@ -24,12 +24,13 @@ import sun.rmi.runtime.Log;
 @WebServlet(name = "SearchResultServlet")
 public class SearchResultServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        doGet(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("yanbin search ! . ");
+        request.setCharacterEncoding("UTF-8");
         String keyword = request.getParameter("keyword");
+        System.out.println("yanbin search ! . keyword " +keyword);
         try {
             searchResult(keyword);
         } catch (ParseException e) {
@@ -41,7 +42,8 @@ public class SearchResultServlet extends HttpServlet {
         System.out.println("yanbin search begin. ");
         Hits hits = null;
         Query query = null;
-        IndexSearcher searcher = new IndexSearcher("/home/yan/work/LuceneIndex");
+//        IndexSearcher searcher = new IndexSearcher("/home/yan/work/LuceneIndex");
+        IndexSearcher searcher = new IndexSearcher("D:\\LuceneIndex");
 
         Analyzer analyzer = new StandardAnalyzer();
         try {
@@ -52,9 +54,11 @@ public class SearchResultServlet extends HttpServlet {
         }
         if (searcher != null) {
             hits = searcher.search(query);
+            System.out.println("yanbin ， hits.length():" + hits.length());
             if (hits.length() > 0) {
-                System.out.println(" 找到: " + hits.length() + "  个结果! ");
+                System.out.println(" find 找到 : " + hits.length() + "  个结果! ");
             }
         }
+        System.out.println("yanbin search end. ");
     }
 }
