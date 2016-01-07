@@ -7,6 +7,7 @@ import java.io.IOException;
 
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
+import org.apache.lucene.document.Document;
 import org.apache.lucene.queryParser.ParseException;
 import org.apache.lucene.queryParser.QueryParser;
 import org.apache.lucene.search.Hits;
@@ -56,7 +57,12 @@ public class SearchResultServlet extends HttpServlet {
             hits = searcher.search(query);
             System.out.println("yanbin ， hits.length():" + hits.length());
             if (hits.length() > 0) {
-                System.out.println(" find 找到 : " + hits.length() + "  个结果! ");
+                System.out.println(" find :" + hits.length() + "  result! ");
+            }
+            for(int i = 0; i < hits.length(); i++){
+                Document document = hits.doc(i);
+                System.out.println(i + " 路径 ：" + document.getField("path"));
+                System.out.println(i + " 内容 ：" + document.getField("body"));
             }
         }
         System.out.println("yanbin search end. ");
