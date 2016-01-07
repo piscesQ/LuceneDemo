@@ -32,8 +32,21 @@ public class CreateIndexServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
+//        String projectName = (String)request.getSession().getAttribute("projectName");
+//        System.out.println("yanbin projectName = " + projectName);    //test normal
+        System.out.println("USER_HOME = " + System.getProperties().getProperty("user.home"));   //test normal
+
+
         String documentPath = request.getParameter("document");
         String indexPath = request.getParameter("index");
+
+        if(indexPath == null || indexPath.length() == 0){
+            indexPath = (String)request.getSession().getAttribute("defaultIndexPath");
+        }
+
+        request.getSession().setAttribute("documentPath", documentPath);   //lucene document path
+        request.getSession().setAttribute("indexPath", indexPath);   //lucene index path
+
         System.out.println("yanbin documentPath . " + documentPath);
         System.out.println("yanbin indexPath . " + indexPath);
         try {

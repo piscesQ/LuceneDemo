@@ -30,21 +30,32 @@ public class SearchResultServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
+
         String keyword = request.getParameter("keyword");
+        String itemNum = request.getParameter("item_num");
+        String indexPath = (String)request.getSession().getAttribute("indexPath");
+        if(indexPath == null || indexPath.length() == 0){
+            indexPath = (String)request.getSession().getAttribute("defaultIndexPath");
+        }
+
+        request.getSession().setAttribute("keyword",keyword);
+        request.getSession().setAttribute("itemNum",itemNum);
+
         System.out.println("yanbin search ! . keyword " +keyword);
         try {
-            searchResult(keyword);
+            Hits hits = searchResult(keyword, indexPath);
+            request.setAttribute("hits", hits);
         } catch (ParseException e) {
             e.printStackTrace();
         }
+        request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 
-    private void searchResult(String keyword) throws IOException, ParseException {
+    private Hits searchResult(String keyword, String indexPath) throws IOException, ParseException {
         System.out.println("yanbin search begin. ");
         Hits hits = null;
         Query query = null;
-//        IndexSearcher searcher = new IndexSearcher("/home/yan/work/LuceneIndex");
-        IndexSearcher searcher = new IndexSearcher("D:\\LuceneIndex");
+        IndexSearcher searcher = new IndexSearcher(indexPath);
 
         Analyzer analyzer = new StandardAnalyzer();
         try {
@@ -61,10 +72,11 @@ public class SearchResultServlet extends HttpServlet {
             }
             for(int i = 0; i < hits.length(); i++){
                 Document document = hits.doc(i);
-                System.out.println(i + " 路径 ：" + document.getField("path"));
+                System.out.println(i + " 路径 ：" + document.getField("path").stringValue());
                 System.out.println(i + " 内容 ：" + document.getField("body"));
             }
         }
         System.out.println("yanbin search end. ");
+        return hits;
     }
 }
