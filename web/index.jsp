@@ -63,7 +63,7 @@
                     Document document = hits.doc(i);
         %>
         <tr><td align="center" width="30"><%=i%></td><td><%=document.getField("path").stringValue()%></td></tr>
-        <%
+        <% 
                 }
             }
         %>
