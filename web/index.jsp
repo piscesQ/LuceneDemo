@@ -47,6 +47,14 @@
     <%-- search result show --%>
     <%
         int currentPageNum = 1;
+        if(session.getAttribute("currentPageNum") != null){
+            try {
+                currentPageNum = Integer.parseInt((String)session.getAttribute("currentPageNum"));
+            }catch (Exception e){
+                System.out.println("index.jsp currentPageNum format error");
+            }
+        }
+
         int itemNum = 5;
         try{
             itemNum = Integer.parseInt((String)session.getAttribute("itemNum"));
@@ -59,30 +67,33 @@
         <%
             Hits hits = (Hits)request.getAttribute("hits");
             if(hits != null && hits.length() > 0){
-                for(int i = 0; i < itemNum && i < hits.length(); i++){
+                for(int i =(currentPageNum - 1) * itemNum; i < itemNum && i < hits.length(); i++){
                     Document document = hits.doc(i);
         %>
-        <tr><td align="center" width="30"><%=i%></td><td><%=document.getField("path").stringValue()%></td></tr>
-        <% 
+        <tr><td align="center" width="30"><%=i + 1%></td><td><%=document.getField("path").stringValue()%></td></tr>
+        <%
                 }
             }
         %>
         <tr align="center" valign="bottom"><td colspan="2" height="50">
-            <input id="firstPage" type="button" value="首页">
-            <input id="prePage" type="button" value="上一页">
-            <input id="nextPage" type="button" value="下一页">
-            <input id="lastPage" type="button" value="尾页">
+            <input id="firstPage" type="button" value="首页" onclick="refreshPageNum(1)">
+            <input id="prePage" type="button" value="上一页" onclick="refreshPageNum(<%=currentPageNum - 1%>)">
+            <input id="nextPage" type="button" value="下一页" onclick="refreshPageNum(<%=currentPageNum + 1%>)">
+            <input id="lastPage" type="button" value="尾页" onclick="refreshPageNum(1)">
         </td></tr>
     </table>
-
-
 </div>
 
 <script>
-    document.getElementById("createIndexSubmit").onclick = createIndexButtonOnClick();
-    function createIndexButtonOnClick(){
-        var documentPath = document.getElementById("document").innerHTML;
-        alert("documentPath = " + documentPath);
+//    document.getElementById("createIndexSubmit").onclick = createIndexButtonOnClick();
+//    function createIndexButtonOnClick(){
+//        var documentPath = document.getElementById("document").innerHTML;
+//        alert("documentPath = " + documentPath);
+//    }
+    function refreshPageNum(pageNum){
+        session.setAttribute("currentPageNum",pageNum);
+        location.reload(false);
     }
+//IOException=org.apache.pdfbox.exceptions.WrappedIOException
 </script>
 <%@include file="footer.jsp"%>
