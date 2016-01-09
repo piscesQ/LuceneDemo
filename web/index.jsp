@@ -9,18 +9,6 @@
 </div>
 
 <div align="center">
-    <%--<form name="search" action="results.jsp" method="get">--%>
-		<%--<p>--%>
-			<%--<input name="query" size="44"/>&nbsp;Search Criteria--%>
-		<%--</p>--%>
-		<%--<p>--%>
-			<%--<input name="maxresults" size="4" value="100"/>&nbsp;Results Per Page&nbsp;--%>
-			<%--<input type="submit" value="Search"/>--%>
-		<%--</p>--%>
-    <%--</form>--%>
-
-<%-- ================ --%>
-
         <%
             //定义一些变量
             session.setAttribute("projectName", "LuceneDemo");
@@ -70,15 +58,6 @@
 
     <%-- search result show --%>
     <%
-//        int currentPageNum = 1;
-//        if(session.getAttribute("currentPageNum") != null){
-//            try {
-//                currentPageNum = Integer.parseInt((String)session.getAttribute("currentPageNum"));
-//            }catch (Exception e){
-//                System.out.println("index.jsp currentPageNum format error");
-//            }
-//        }
-
         int itemNum = 5;
         try{
             itemNum = Integer.parseInt(strItemNum);
