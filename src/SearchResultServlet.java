@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import bean.PageBean;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
@@ -33,6 +34,12 @@ public class SearchResultServlet extends HttpServlet {
 
         String keyword = request.getParameter("keyword");
         String itemNum = request.getParameter("item_num");
+        String currentPage = request.getParameter("current_page");
+        int intCurrentPage = Integer.parseInt(currentPage);
+        if (intCurrentPage < 1) {
+            intCurrentPage = 1;
+        }
+        System.out.println("-------=============" + currentPage);
         String indexPath = (String)request.getSession().getAttribute("indexPath");
         if(indexPath == null || indexPath.length() == 0){
             indexPath = (String)request.getSession().getAttribute("defaultIndexPath");
@@ -44,7 +51,11 @@ public class SearchResultServlet extends HttpServlet {
         System.out.println("yanbin search ! . keyword " +keyword);
         try {
             Hits hits = searchResult(keyword, indexPath);
-            request.setAttribute("hits", hits);
+            PageBean pageBean = new PageBean(String.valueOf(intCurrentPage), itemNum, hits);
+            if (intCurrentPage > pageBean.getMaxPage()) {
+                pageBean.setIntCurrentPage(pageBean.getMaxPage());
+            }
+            request.setAttribute("pageBean", pageBean);
         } catch (ParseException e) {
             e.printStackTrace();
         }

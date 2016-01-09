@@ -1,3 +1,5 @@
+import org.apache.pdfbox.cos.COSDocument;
+import org.apache.pdfbox.pdfparser.PDFParser;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.util.PDFTextStripper;
 import org.apache.poi.POIXMLDocument;
@@ -163,6 +165,11 @@ public class ReadContextUtil {
         PDDocument pdfDocument = null;
         try {
             FileInputStream fis = new FileInputStream(path);
+//            PDFParser pdfParser = new PDFParser(fis);
+//            pdfParser.parse();
+//            COSDocument document = pdfParser.getDocument();
+//            document.print();
+
             PDFTextStripper stripper = new PDFTextStripper();
             pdfDocument = PDDocument.load(fis);
             StringWriter writer = new StringWriter();
@@ -171,6 +178,7 @@ public class ReadContextUtil {
             fis.close();
         } catch (java.io.IOException e) {
             System.err.println("IOException=" + e);
+            e.printStackTrace();
 //            System.exit(1);
         } finally {
             if (pdfDocument != null) {
@@ -181,7 +189,6 @@ public class ReadContextUtil {
         }
 
         return content.toString();
-
     }
 
     /**
@@ -194,8 +201,8 @@ public class ReadContextUtil {
     public static String readTxt(String path) throws IOException {
         StringBuffer sb = new StringBuffer("");
         InputStream is = new FileInputStream(path);
-        // 必须设置成GBK，否则将出现乱码
-        BufferedReader reader = new BufferedReader(new InputStreamReader(is, "GBK"));
+        // 动态获得系统编码，windows是GBK，Ubuntu是UTF-8，否则将出现乱码
+        BufferedReader reader = new BufferedReader(new InputStreamReader(is, System.getProperty("file.encoding")));
         try {
             String line = "";
             while ((line = reader.readLine()) != null) {

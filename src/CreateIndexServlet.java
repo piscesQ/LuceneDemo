@@ -32,6 +32,7 @@ public class CreateIndexServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
+        System.out.println("====-===========-==========" + System.getProperty("file.encoding"));
 //        String projectName = (String)request.getSession().getAttribute("projectName");
 //        System.out.println("yanbin projectName = " + projectName);    //test normal
         System.out.println("USER_HOME = " + System.getProperties().getProperty("user.home"));   //test normal
@@ -94,7 +95,7 @@ public class CreateIndexServlet extends HttpServlet {
                 }else if(textFiles[i].getName().endsWith(".xls")){
                     body = ReadContextUtil.ReadExcel(textFiles[i].getCanonicalPath());
                 }else if(textFiles[i].getName().endsWith(".xml")){
-//                    body = ReadContextUtil.readTxt(textFiles[i].getCanonicalPath());
+                    body = ReadContextUtil.readTxt(textFiles[i].getCanonicalPath());
                 }else{
                     System.out.println("yanbin 不支持文件类型. ");
                 }
