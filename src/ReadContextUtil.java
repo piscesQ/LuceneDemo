@@ -17,16 +17,15 @@ import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.apache.poi.xwpf.extractor.XWPFWordExtractor;
-import org.apache.xmlbeans.XmlException;
+
 
 import java.io.*;
 
 /**
- * @author YanBin yanbin@zhongsou.com
+ * @author wcy
  * @version V1.0
- * @Copyright (c) 2016 zhongsou
- * @Description class description
+ * @Copyright (c) 2016 
+ * @Description extract file content
  * @date 2016/1/6
  */
 public class ReadContextUtil {

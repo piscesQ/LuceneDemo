@@ -3,9 +3,9 @@ package bean;
 import org.apache.lucene.search.Hits;
 
 /**
- * @author YanBin yanbin@zhongsou.com
+ * @author wcy
  * @version V1.0
- * @Copyright (c) 2016 zhongsou
+ * @Copyright (c) 2016 
  * @Description class description
  * @date 16-1-9
  */

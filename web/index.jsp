@@ -1,11 +1,12 @@
 <%@ page import="java.io.File" %>
 <%@ page import="org.apache.lucene.search.Hits" %>
 <%@ page import="org.apache.lucene.document.Document" %>
-<%@ page import="org.apache.poi.hslf.record.ExAviMovie" %>
 <%@ page import="bean.PageBean" %>
-<%@include file="header.jsp"%>
-<% /* Author: Andrew C. Oliver (acoliver2@users.sourceforge.net) */ %>
 <%@ page contentType="text/html;charset=utf-8"%>
+
+<div align="center">
+    <h1>文件检索系统</h1>
+</div>
 
 <div align="center">
     <%--<form name="search" action="results.jsp" method="get">--%>
@@ -21,6 +22,7 @@
 <%-- ================ --%>
 
         <%
+            //定义一些变量
             session.setAttribute("projectName", "LuceneDemo");
             String USER_HOME = System.getProperties().getProperty("user.home");
             session.setAttribute("USER_HOME", USER_HOME);   //store USER_HOME into session
@@ -41,6 +43,7 @@
             }
         %>
 
+        <%--表单--%>
 	<form  action="CreateIndexServlet" method="post">
         <table border="0" cellpadding="10">
            <tr><td>文档路径：</td><td><input id="document" type="text" name="document" size="44" value=<%=documentPath%>></td></tr>
@@ -88,7 +91,7 @@
             System.err.println("itemNum format error");
         }
     %>
-
+<%--显示结果--%>
     <table border="0" cellpadding="10">
         <%
             PageBean pageBean = (PageBean)request.getAttribute("pageBean");
@@ -114,8 +117,10 @@
         <%
             }
         %>
-
     </table>
+</div>
+<div align="center">
+    <p>Copyright&copy;2016&emsp;WCY</p>
 </div>
 
 <script>
@@ -128,13 +133,8 @@
         }
     }
     function refreshPageNum(pageNum){
-//        if(pageNum < 1 || pageNum > beanMaxPage){
-//            return;
-//        }
-//        session.setAttribute("currentPageNum",pageNum);
         document.getElementById("current_page").value = pageNum;
         document.query.submit();
     }
-//IOException=org.apache.pdfbox.exceptions.WrappedIOException
 </script>
-<%@include file="footer.jsp"%>
+
