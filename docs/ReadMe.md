@@ -2,7 +2,10 @@
 ###项目介绍
 使用Lucene实现的一个文件检索系统, Demo中使用到了JSP、Servlet等技术。可以对html、pdf、doc等文件实现检索
 
-###导入war包
+###在IDEA配置Tomcat
+&emsp;&emsp;&emsp;&emsp;1、打开"Run/Debug Configurations" --> 点击右上角"+"号 --> 选择"Tomcat Server" --> "local"
+
+###导出war包
 &emsp;&emsp;&emsp;&emsp;1、右击工程名 --> 点击"Open Module Settings" --> 点击"Artifacts"(File->Project Structure->Artifacts) <br/>
 &emsp;&emsp;&emsp;&emsp;2、点击上方"+"号 --> 点击"Web Application:Archive" --> 点击右下角"OK", 并记住输出目录!!! <br/>
 &emsp;&emsp;&emsp;&emsp;3、点击IDEA菜单栏的"Build" --> 点击"Build Artifacts" --> 选择刚刚创建的"Web Application:Archive" --> 点击"Build" <br/>
