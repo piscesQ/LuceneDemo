@@ -1,6 +1,6 @@
 #使用教程
 ###项目介绍
-使用Lucene实现的一个文件检索系统, Demo中使用到了JSP、Servlet等技术。可以对html、pdf、doc等文件实现检索
+使用Lucene实现的一个文件检索系统, Demo中使用到了JSP、Servlet等技术。可以对html、pdf、doc等文件内容实现检索。
 
 ###在IDEA配置Tomcat
 &emsp;&emsp;&emsp;&emsp;1、打开"Run/Debug Configurations" --> 点击右上角"+"号 --> 选择"Tomcat Server" --> "local"
