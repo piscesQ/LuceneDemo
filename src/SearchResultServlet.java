@@ -17,7 +17,7 @@ import org.apache.lucene.search.Query;
 import sun.rmi.runtime.Log;
 
 /**
- * @author wcy
+ * @author KoreQ
  * @version V1.0
  * @Copyright (c) 2016 
  * @Description search result from index
@@ -48,7 +48,7 @@ public class SearchResultServlet extends HttpServlet {
         request.getSession().setAttribute("keyword",keyword);
         request.getSession().setAttribute("itemNum",itemNum);
 
-        System.out.println("wcy search ! . keyword " +keyword);
+        System.out.println("KoreQ search ! . keyword " +keyword);
         try {
             Hits hits = searchResult(keyword, indexPath);
             PageBean pageBean = new PageBean(String.valueOf(intCurrentPage), itemNum, hits);
@@ -63,7 +63,7 @@ public class SearchResultServlet extends HttpServlet {
     }
 
     private Hits searchResult(String keyword, String indexPath) throws IOException, ParseException {
-        System.out.println("wcy search begin. ");
+        System.out.println("KoreQ search begin. ");
         Hits hits = null;
         Query query = null;
         IndexSearcher searcher = new IndexSearcher(indexPath);
@@ -77,7 +77,7 @@ public class SearchResultServlet extends HttpServlet {
         }
         if (searcher != null) {
             hits = searcher.search(query);
-            System.out.println("wcy ， hits.length():" + hits.length());
+            System.out.println("KoreQ ， hits.length():" + hits.length());
             if (hits.length() > 0) {
                 System.out.println(" find :" + hits.length() + "  result! ");
             }
@@ -87,7 +87,7 @@ public class SearchResultServlet extends HttpServlet {
                 System.out.println(i + " 内容 ：" + document.getField("body"));
             }
         }
-        System.out.println("wcy search end. ");
+        System.out.println("KoreQ search end. ");
         return hits;
     }
 }

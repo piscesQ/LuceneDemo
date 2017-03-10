@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * @author wcy wcy@.com
+ * @author KoreQ
  * @version V1.0
  * @Copyright (c) 2016 
  * @Description class description
@@ -34,7 +34,7 @@ public class CreateIndexServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         System.out.println("====-===========-==========" + System.getProperty("file.encoding"));
 //        String projectName = (String)request.getSession().getAttribute("projectName");
-//        System.out.println("wcy projectName = " + projectName);    //test normal
+//        System.out.println("KoreQ projectName = " + projectName);    //test normal
         System.out.println("USER_HOME = " + System.getProperties().getProperty("user.home"));   //test normal
 
 
@@ -48,14 +48,14 @@ public class CreateIndexServlet extends HttpServlet {
         request.getSession().setAttribute("documentPath", documentPath);   //lucene document path
         request.getSession().setAttribute("indexPath", indexPath);   //lucene index path
 
-        System.out.println("wcy documentPath . " + documentPath);
-        System.out.println("wcy indexPath . " + indexPath);
+        System.out.println("KoreQ documentPath . " + documentPath);
+        System.out.println("KoreQ indexPath . " + indexPath);
         try {
             createIndex(documentPath, indexPath);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println("wcy create end . ");
+        System.out.println("KoreQ create end . ");
         request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 
@@ -97,10 +97,10 @@ public class CreateIndexServlet extends HttpServlet {
                 }else if(textFiles[i].getName().endsWith(".xml")){
                     body = ReadContextUtil.readTxt(textFiles[i].getCanonicalPath());
                 }else{
-                    System.out.println("wcy 不支持文件类型. ");
+                    System.out.println("KoreQ 不支持文件类型. ");
                 }
 
-                System.out.println("wcy File " + textFiles[i].getCanonicalPath() + " 正在被索引. ");
+                System.out.println("KoreQ File " + textFiles[i].getCanonicalPath() + " 正在被索引. ");
                 System.out.println(body);
 
                 Document document = new Document();
@@ -117,7 +117,7 @@ public class CreateIndexServlet extends HttpServlet {
 
         // 测试一下索引的时间
         long endTime = new Date().getTime();
-        System.out.println("wcy  耗时"
+        System.out.println("KoreQ  耗时"
                 + (endTime - startTime)
                 + "  毫秒! source path"
                 + fileDir.getPath());

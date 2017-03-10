@@ -22,7 +22,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import java.io.*;
 
 /**
- * @author wcy
+ * @author KoreQ
  * @version V1.0
  * @Copyright (c) 2016 
  * @Description extract file content

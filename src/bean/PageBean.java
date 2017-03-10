@@ -3,7 +3,7 @@ package bean;
 import org.apache.lucene.search.Hits;
 
 /**
- * @author wcy
+ * @author KoreQ
  * @version V1.0
  * @Copyright (c) 2016 
  * @Description class description
