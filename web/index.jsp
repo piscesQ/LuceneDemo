@@ -5,7 +5,7 @@
 <%@ page contentType="text/html;charset=utf-8"%>
 
 <div align="center">
-    <h1>文件检索系统</h1>
+    <h1>文件检索系统v2</h1>
 </div>
 
 <div align="center">
