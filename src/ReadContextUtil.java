@@ -1,9 +1,5 @@
-import org.apache.pdfbox.cos.COSDocument;
-import org.apache.pdfbox.pdfparser.PDFParser;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.util.PDFTextStripper;
-import org.apache.poi.POIXMLDocument;
-import org.apache.poi.POIXMLTextExtractor;
 import org.apache.poi.hslf.HSLFSlideShow;
 import org.apache.poi.hslf.model.Slide;
 import org.apache.poi.hslf.model.TextRun;
@@ -11,20 +7,17 @@ import org.apache.poi.hslf.usermodel.SlideShow;
 import org.apache.poi.hssf.extractor.ExcelExtractor;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.hwpf.extractor.WordExtractor;
-import org.apache.poi.openxml4j.exceptions.OpenXML4JException;
-import org.apache.poi.openxml4j.opc.OPCPackage;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-
 
 import java.io.*;
 
 /**
  * @author KoreQ
  * @version V1.0
- * @Copyright (c) 2016 
+ * @Copyright (c) 2016
  * @Description extract file content
  * @date 2016/1/6
  */

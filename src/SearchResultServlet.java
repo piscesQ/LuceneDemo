@@ -1,10 +1,3 @@
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-
 import bean.PageBean;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
@@ -14,12 +7,18 @@ import org.apache.lucene.queryParser.QueryParser;
 import org.apache.lucene.search.Hits;
 import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.search.Query;
-import sun.rmi.runtime.Log;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 /**
  * @author KoreQ
  * @version V1.0
- * @Copyright (c) 2016 
+ * @Copyright (c) 2016
  * @Description search result from index
  * @date 2016/1/6
  */
@@ -39,16 +38,16 @@ public class SearchResultServlet extends HttpServlet {
         if (intCurrentPage < 1) {
             intCurrentPage = 1;
         }
-        System.out.println("-------=============" + currentPage);
-        String indexPath = (String)request.getSession().getAttribute("indexPath");
-        if(indexPath == null || indexPath.length() == 0){
-            indexPath = (String)request.getSession().getAttribute("defaultIndexPath");
+        System.out.println("=============" + currentPage + "=============");
+        String indexPath = (String) request.getSession().getAttribute("indexPath");
+        if (indexPath == null || indexPath.length() == 0) {
+            indexPath = (String) request.getSession().getAttribute("defaultIndexPath");
         }
 
-        request.getSession().setAttribute("keyword",keyword);
-        request.getSession().setAttribute("itemNum",itemNum);
+        request.getSession().setAttribute("keyword", keyword);
+        request.getSession().setAttribute("itemNum", itemNum);
 
-        System.out.println("KoreQ search ! . keyword " +keyword);
+        System.out.println("KoreQ search ! . keyword " + keyword);
         try {
             Hits hits = searchResult(keyword, indexPath);
             PageBean pageBean = new PageBean(String.valueOf(intCurrentPage), itemNum, hits);
@@ -80,8 +79,10 @@ public class SearchResultServlet extends HttpServlet {
             System.out.println("KoreQ ， hits.length():" + hits.length());
             if (hits.length() > 0) {
                 System.out.println(" find :" + hits.length() + "  result! ");
+            } else {
+                System.out.println(" find : zero result! ");
             }
-            for(int i = 0; i < hits.length(); i++){
+            for (int i = 0; i < hits.length(); i++) {
                 Document document = hits.doc(i);
                 System.out.println(i + " 路径 ：" + document.getField("path").stringValue());
                 System.out.println(i + " 内容 ：" + document.getField("body"));

@@ -13,7 +13,7 @@ public class PageBean {
     private String currentPage;
     private int maxPage;
     private String itemNum;
-    private Hits hits;
+    private Hits hits;  //存放所有的命中结果
     private int intCurrentPage;
     private int intItemNum;
 

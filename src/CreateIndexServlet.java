@@ -1,10 +1,3 @@
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.Date;
-
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
@@ -16,11 +9,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.io.IOException;
+import java.util.Date;
 
 /**
  * @author KoreQ
  * @version V1.0
- * @Copyright (c) 2016 
+ * @Copyright (c) 2016
  * @Description class description
  * @date 2016/1/6
  */
@@ -41,8 +37,8 @@ public class CreateIndexServlet extends HttpServlet {
         String documentPath = request.getParameter("document");
         String indexPath = request.getParameter("index");
 
-        if(indexPath == null || indexPath.length() == 0){
-            indexPath = (String)request.getSession().getAttribute("defaultIndexPath");
+        if (indexPath == null || indexPath.length() == 0) {
+            indexPath = (String) request.getSession().getAttribute("defaultIndexPath");
         }
 
         request.getSession().setAttribute("documentPath", documentPath);   //lucene document path
@@ -80,23 +76,23 @@ public class CreateIndexServlet extends HttpServlet {
         // 增加document到索引去
         for (int i = 0; i < textFiles.length; i++) {
             String body = "init Content";
-            if(textFiles[i].isFile()){
+            if (textFiles[i].isFile()) {
 //                1、txt、doc、pdf、html、ppt、xls和xml；
                 if (textFiles[i].getName().endsWith(".txt")) {   //txt文件
                     body = ReadContextUtil.readTxt(textFiles[i].getCanonicalPath());
-                }else if(textFiles[i].getName().endsWith(".doc")){
+                } else if (textFiles[i].getName().endsWith(".doc")) {
                     body = ReadContextUtil.readWord(textFiles[i].getCanonicalPath());
-                }else if(textFiles[i].getName().endsWith(".pdf")){
+                } else if (textFiles[i].getName().endsWith(".pdf")) {
                     body = ReadContextUtil.readPdf(textFiles[i].getCanonicalPath());
-                }else if(textFiles[i].getName().endsWith(".html") || textFiles[i].getName().endsWith(".htm")){
+                } else if (textFiles[i].getName().endsWith(".html") || textFiles[i].getName().endsWith(".htm")) {
                     body = ReadContextUtil.readHtml(textFiles[i].getCanonicalPath());
-                }else if(textFiles[i].getName().endsWith(".ppt")){
+                } else if (textFiles[i].getName().endsWith(".ppt")) {
                     body = ReadContextUtil.readPowerPoint(textFiles[i].getCanonicalPath());
-                }else if(textFiles[i].getName().endsWith(".xls")){
+                } else if (textFiles[i].getName().endsWith(".xls")) {
                     body = ReadContextUtil.ReadExcel(textFiles[i].getCanonicalPath());
-                }else if(textFiles[i].getName().endsWith(".xml")){
+                } else if (textFiles[i].getName().endsWith(".xml")) {
                     body = ReadContextUtil.readTxt(textFiles[i].getCanonicalPath());
-                }else{
+                } else {
                     System.out.println("KoreQ 不支持文件类型. ");
                 }
 

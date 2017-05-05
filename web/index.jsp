@@ -14,7 +14,7 @@
             session.setAttribute("projectName", "LuceneDemo");
             String USER_HOME = System.getProperties().getProperty("user.home");
             session.setAttribute("USER_HOME", USER_HOME);   //store USER_HOME into session
-            String indexPath = USER_HOME + File.separator + "KoreQ" + File.separator + "LuceneIndex";
+            String indexPath = USER_HOME + File.separator + "LuceneIndex";
             session.setAttribute("defaultIndexPath", indexPath);   //default index path
 
             String documentPath = (String)session.getAttribute("documentPath");
